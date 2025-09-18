@@ -3,9 +3,9 @@
 Excel Data Processor
 
 Console application that reads an Excel file and calculates
-the average value in column C.
+the average and median values in column C.
 
-Version: 1.0.0
+Version: 1.1.0
 """
 
 import sys
@@ -50,6 +50,24 @@ def calculate_average(data: list) -> float:
     return sum(data) / len(data)
 
 
+def calculate_median(data: list) -> float:
+    """Calculate the median of the given data."""
+    if not data:
+        return 0.0
+    
+    sorted_data = sorted(data)
+    n = len(sorted_data)
+    
+    if n % 2 == 0:
+        # Even number of elements - average of two middle values
+        mid1 = sorted_data[n // 2 - 1]
+        mid2 = sorted_data[n // 2]
+        return (mid1 + mid2) / 2
+    else:
+        # Odd number of elements - middle value
+        return sorted_data[n // 2]
+
+
 def main():
     """Main application entry point."""
     # Read Excel file
@@ -59,11 +77,13 @@ def main():
     # Get column C data
     column_c_data = get_column_c_data(df)
     
-    # Calculate average
+    # Calculate average and median
     average = calculate_average(column_c_data)
+    median = calculate_median(column_c_data)
     
-    # Display only the average value
-    print(f"{average:.2f}")
+    # Display both average and median values
+    print(f"Average: {average:.2f}")
+    print(f"Median: {median:.2f}")
 
 
 if __name__ == "__main__":
