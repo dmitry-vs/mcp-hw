@@ -82,8 +82,8 @@ def main():
     median = calculate_median(column_c_data)
     
     # Display both average and median values
-    print(f"Average: {average:.2f}")
-    print(f"Median: {median:.2f}")
+    print(f"Average value: {average:.2f}")
+    print(f"Median value: {median:.2f}")
 
 
 if __name__ == "__main__":
